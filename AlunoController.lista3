@@ -1,0 +1,27 @@
+﻿using Microsoft.AspNetCore.Mvc;
+
+namespace WebApplication5.Controllers
+{
+    [ApiController]
+    [Route("api/[controller]")]
+
+    public class AlunoController : ControllerBase
+    {
+        [HttpPost("validar")]
+        public IActionResult ValidarAluno(Aluno aluno)
+        {
+            if (!aluno.ValidarRa())
+                return BadRequest("RA inválido. Deve começar com 'RA' seguido de 6 dígitos.");
+
+            return Ok(new
+            {
+                Mensagem = "Aluno válido",
+                Nome = aluno.Nome,
+                RA = aluno.Ra,
+                Email = aluno.Email,
+                CPF = aluno.Cpf,
+                Ativo = aluno.Ativo
+            });
+        }
+    }
+}
