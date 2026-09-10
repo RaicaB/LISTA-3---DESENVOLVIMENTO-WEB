@@ -1,0 +1,19 @@
+﻿using System.Text.RegularExpressions;
+
+namespace WebApplication5.Controllers
+{ 
+    
+        public class Produto
+        {
+            public string Descricao { get; set; }
+            public decimal Preco { get; set; }
+            public int Estoque { get; set; }
+            public string CodigoProduto { get; set; }
+
+            public bool ValidarCodigoProduto()
+            {
+                var regex = new Regex(@"^[A-Z]{3}-\d{4}$");
+                return regex.IsMatch(CodigoProduto);
+            }
+        }
+    }
